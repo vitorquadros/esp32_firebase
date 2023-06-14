@@ -20,27 +20,7 @@ FirebaseData fbdo; //Define Firebase Data object
 FirebaseAuth auth; //Define Firebase Auth object
 FirebaseConfig config; //Define Firebase Config object
 
-// Leds
 #define LED_AZUL 2
-#define LED_BWC_1 1
-#define LED_BWC_2 1
-#define LED_QUARTO_1 1
-#define LED_QUARTO_2 1
-#define LED_QUARTO_3 1
-#define LED_SALA 1
-#define LED_VARANDA 1
-#define LED_COZINHA 1
-
-// AC
-
-
-// Projeto
-
-
-
-void init() {
-
-}
 
 //Inicializa o wifi
 void wifiSetup() {
@@ -85,5 +65,38 @@ void setup() {
   Serial.println("Setup Wifi e Firebase");
   wifiSetup();
   firebaseSetup();
-  pinMode(LED_AZUL,OUTPUT); //seta o pino 2 do led azul para output
+  pinMode(LED_AZUL, OUTPUT); //seta o pino 2 do led azul para output
+}
+
+int count_int = 0;
+
+void loop() {
+  delay(2000);
+  if (Firebase.ready()){
+    //Escrevendo e lendo um Inteiro no RTDB
+    //Escrevendo com set
+    Serial.println("\n\nSet int...");
+    Firebase.RTDB.setInt(&fbdo, F("/value"), count_int++) 
+      ? //Lendo com get  
+        Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/value"))
+        ? String(fbdo.to<int>()).c_str() 
+        : fbdo.errorReason().c_str()) 
+      : Serial.println(fbdo.errorReason().c_str());
+
+    /*
+      Simulação de leituras nós casas no RTDB
+    */
+    //Lendo um Inteiro no RTDB
+    Serial.println("Estado da /casa1/lampada1/estado");
+    //Lendo com get  
+    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa1/lampada1/estado"))
+    ? String(fbdo.to<int>()).c_str() 
+    : fbdo.errorReason().c_str());
+  
+    //Liga ou desliga o Led Azul conforme o estado lido no Firebase
+    fbdo.to<int>() == 0 
+      ? digitalWrite(LED_AZUL,LOW) 
+      : digitalWrite(LED_AZUL,HIGH);
+  
+  }
 }
