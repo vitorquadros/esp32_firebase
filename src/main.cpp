@@ -9,8 +9,8 @@
 #include <Firebase_ESP_Client.h>
 
 //Wi-fi
-#define WIFI_SSID "&&"
-#define WIFI_PASSWORD "8642864284"
+#define WIFI_SSID "pipoca"
+#define WIFI_PASSWORD "rafa2011"
 
 //Firebase
 #define API_KEY "AIzaSyBI4MM7N9IzKylgObu5q_L9-YCTYNc91sc"
