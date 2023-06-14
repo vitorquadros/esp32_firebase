@@ -9,8 +9,8 @@
 #include <Firebase_ESP_Client.h>
 
 //Wi-fi
-#define WIFI_SSID "pipoca"
-#define WIFI_PASSWORD "seu_password"
+#define WIFI_SSID "&&"
+#define WIFI_PASSWORD "8642864284"
 
 //Firebase
 #define API_KEY "AIzaSyBI4MM7N9IzKylgObu5q_L9-YCTYNc91sc"
@@ -57,39 +57,20 @@ void firebaseSetup(){
   Firebase.reconnectWiFi(true);
 }
 
-void setup() {
-  //inicializando o terminal
-  Serial.begin(9600);
-  //inicializa o Wifi e o Firebase
-  Serial.println();
-  Serial.println("Setup Wifi e Firebase");
-  wifiSetup();
-  firebaseSetup();
-  pinMode(LED_AZUL, OUTPUT); //seta o pino 2 do led azul para output
-}
-
 int count_int = 0;
 
 void loop() {
   delay(2000);
-  if (Firebase.ready()){
-    //Escrevendo e lendo um Inteiro no RTDB
-    //Escrevendo com set
-    Serial.println("\n\nSet int...");
-    Firebase.RTDB.setInt(&fbdo, F("/value"), count_int++) 
-      ? //Lendo com get  
-        Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/value"))
-        ? String(fbdo.to<int>()).c_str() 
-        : fbdo.errorReason().c_str()) 
-      : Serial.println(fbdo.errorReason().c_str());
+  if (Firebase.ready()) {
+  
+    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado"))
+    ? String(fbdo.to<int>()).c_str()
+    : fbdo.errorReason().c_str());
 
-    /*
-      Simulação de leituras nós casas no RTDB
-    */
     //Lendo um Inteiro no RTDB
-    Serial.println("Estado da /casa1/lampada1/estado");
+    Serial.println("Estado da /casa/quarto1/estado");
     //Lendo com get  
-    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa1/lampada1/estado"))
+    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado"))
     ? String(fbdo.to<int>()).c_str() 
     : fbdo.errorReason().c_str());
   
@@ -100,3 +81,19 @@ void loop() {
   
   }
 }
+
+void setup() {
+  //inicializando o terminal
+  Serial.begin(9600);
+  //inicializa o Wifi e o Firebase
+  Serial.println();
+  Serial.println("Setup Wifi e Firebase");
+  wifiSetup();
+  firebaseSetup();
+  pinMode(LED_AZUL, OUTPUT); //seta o pino 2 do led azul para output
+  loop();
+}
+
+
+
+
