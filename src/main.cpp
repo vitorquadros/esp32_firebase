@@ -62,17 +62,84 @@ int count_int = 0;
 void loop() {
   delay(2000);
   if (Firebase.ready()) {
-  
-    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado"))
-    ? String(fbdo.to<int>()).c_str()
-    : fbdo.errorReason().c_str());
 
-    //Lendo um Inteiro no RTDB
-    Serial.println("Estado da /casa/quarto1/estado");
-    //Lendo com get  
-    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado"))
+
+    // // BANHEIRO 1
+    // Serial.println("Estado da luz do banheiro 1:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/bwc1/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    // // BANHEIRO 2
+    // Serial.println("Estado da luz do banheiro 2:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/bwc2/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    // // COZINHA
+    // Serial.println("Estado da luz da cozinha:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/cozinha/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    // // QUARTO 1
+    // Serial.println("Estado da luz do quarto 1:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    //   // ar condicionado
+    // Serial.println("Estado do ar do quarto 1:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto1/estado_ar"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    // // QUARTO 2
+    // Serial.println("Estado da luz do quarto 2:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto2/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    //   // ar condicionado
+    // Serial.println("Estado do ar do quarto 2:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto2/estado_ar"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    // // QUARTO 3
+    // Serial.println("Estado da luz do quarto 3:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto3/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    //   // ar condicionado
+    // Serial.println("Estado do ar do quarto 3:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/quarto3/estado_ar"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+    //  // SALA
+    // Serial.println("Estado da luz da sala:");
+    // Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/sala/estado"))
+    // ? String(fbdo.to<int>()).c_str() 
+    // : fbdo.errorReason().c_str()
+    // );
+
+     // VARANDA
+    Serial.println("Estado da luz da varanda:");
+    Serial.printf("Get int... %s\n", Firebase.RTDB.getInt(&fbdo, F("/casa/varanda/estado"))
     ? String(fbdo.to<int>()).c_str() 
-    : fbdo.errorReason().c_str());
+    : fbdo.errorReason().c_str()
+    );
   
     //Liga ou desliga o Led Azul conforme o estado lido no Firebase
     fbdo.to<int>() == 0 
